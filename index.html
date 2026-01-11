@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HashFlow Pro | Smart Hashtag Generator</title>
+<meta name="description" content="Free AI-powered hashtag generator for Instagram, YouTube Shorts, TikTok, and all social media platforms. Generate trending hashtags instantly.">
+<meta name="keywords" content="hashtag generator, Instagram hashtags, YouTube Shorts hashtags, social media tools, free hashtag tool, AI hashtag generator">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 * {
@@ -27,12 +29,53 @@
   --glow: 0 0 30px rgba(124, 58, 237, 0.3);
 }
 
+[data-theme="light"] {
+  --primary: #7c3aed;
+  --primary-light: #8b5cf6;
+  --secondary: #d97706;
+  --accent: #059669;
+  --dark: #f8fafc;
+  --darker: #e2e8f0;
+  --light: #0f172a;
+  --gray: #475569;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --border: rgba(0, 0, 0, 0.1);
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --glow: 0 0 30px rgba(124, 58, 237, 0.2);
+}
+
 body {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
   color: var(--light);
   min-height: 100vh;
   line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
+  color: var(--light);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: 15px;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(30deg);
+}
+
+.theme-toggle i {
+  font-size: 1.2rem;
 }
 
 /* Navigation */
@@ -44,6 +87,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(248, 250, 252, 0.9);
 }
 
 .nav-container {
@@ -200,6 +247,10 @@ body {
     z-index: 999;
   }
   
+  [data-theme="light"] .nav-links {
+    background: rgba(248, 250, 252, 0.95);
+  }
+  
   .nav-links.active {
     transform: translateY(0);
     opacity: 1;
@@ -307,6 +358,10 @@ textarea {
   transition: all 0.3s;
 }
 
+[data-theme="light"] textarea {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 textarea:focus {
   outline: none;
   border-color: var(--primary);
@@ -382,7 +437,7 @@ textarea:focus {
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border);
-  color: white;
+  color: var(--light);
   border-radius: 12px;
   font-size: 0.95rem;
   cursor: pointer;
@@ -408,6 +463,10 @@ textarea:focus {
   flex-wrap: wrap;
   gap: 12px;
   align-items: flex-start;
+}
+
+[data-theme="light"] .output-box {
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .hashtag {
@@ -515,6 +574,10 @@ textarea:focus {
   border-radius: 12px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] .faq-item {
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .faq-question {
@@ -665,6 +728,11 @@ textarea:focus {
   transition: all 0.3s;
 }
 
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
@@ -710,6 +778,10 @@ textarea:focus {
   text-align: center;
 }
 
+[data-theme="light"] .contact-card {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 .contact-card i {
   font-size: 2.5rem;
   color: var(--primary);
@@ -720,14 +792,102 @@ textarea:focus {
   margin-bottom: 10px;
 }
 
+/* AdSense Ads */
+.ad-container {
+  margin: 40px auto;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  color: var(--gray);
+  font-style: italic;
+}
+
+[data-theme="light"] .ad-container {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.ad-leaderboard {
+  width: 728px;
+  height: 90px;
+}
+
+.ad-medium-rectangle {
+  width: 300px;
+  height: 250px;
+}
+
+.ad-responsive {
+  width: 100%;
+  height: auto;
+  min-height: 90px;
+}
+
+@media (max-width: 768px) {
+  .ad-leaderboard {
+    width: 100%;
+    height: 90px;
+  }
+  
+  .ad-medium-rectangle {
+    width: 100%;
+    height: 250px;
+  }
+}
+
 /* Footer */
 .footer {
-  text-align: center;
   margin-top: 80px;
-  padding: 30px;
+  padding: 40px 20px;
   border-top: 1px solid var(--border);
   color: var(--gray);
   font-size: 0.95rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h3 {
+  color: var(--light);
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links a:hover {
+  color: var(--primary-light);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
 .heart {
@@ -1003,6 +1163,11 @@ textarea:focus {
     overflow-y: auto;
     max-height: 80vh;
   }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
 </style>
 
@@ -1054,21 +1219,22 @@ textarea:focus {
 <nav class="navbar">
   <div class="nav-container">
     <a href="#" class="logo-small" onclick="showPage('home'); return false;">HashFlow Pro</a>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a>
-      <a href="#" class="nav-link" onclick="showPage('trending'); return false;">Trending Hashtags</a>
-      <a href="#" class="nav-link" onclick="showPage('instagram'); return false;">Instagram</a>
-      <a href="#" class="nav-link" onclick="showPage('youtube'); return false;">YouTube Shorts</a>
-      <a href="#" class="nav-link" onclick="showPage('blog'); return false;">Blog</a>
-      <a href="#" class="nav-link" onclick="showPage('about'); return false;">About Us</a>
-      <a href="#" class="nav-link" onclick="showPage('contact'); return false;">Contact</a>
-      <a href="#" class="nav-link" onclick="showPage('privacy'); return false;">Privacy</a>
-      <a href="#" class="nav-link" onclick="showPage('disclaimer'); return false;">Disclaimer</a>
+    <div class="nav-right">
+      <div class="nav-links" id="navLinks">
+        <a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('trending'); return false;">Trending Hashtags</a>
+        <a href="#" class="nav-link" onclick="showPage('instagram'); return false;">Instagram</a>
+        <a href="#" class="nav-link" onclick="showPage('youtube'); return false;">YouTube Shorts</a>
+        <a href="#" class="nav-link" onclick="showPage('blog'); return false;">Blog</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
 </nav>
@@ -1080,6 +1246,12 @@ textarea:focus {
       <h1 class="logo">HashFlow Pro</h1>
       <p class="tagline">Generate powerful hashtags instantly. Boost your social media engagement with our smart tools.</p>
     </header>
+
+    <!-- AdSense Leaderboard -->
+    <div class="ad-container ad-leaderboard">
+      <!-- AdSense Code Here -->
+      <div class="ad-placeholder">Advertisement</div>
+    </div>
 
     <!-- Tools Container -->
     <div class="tools-container">
@@ -1167,6 +1339,12 @@ textarea:focus {
       </div>
     </div>
 
+    <!-- AdSense Medium Rectangle -->
+    <div class="ad-container ad-medium-rectangle">
+      <!-- AdSense Code Here -->
+      <div class="ad-placeholder">Advertisement</div>
+    </div>
+
     <!-- SEO FAQ Section -->
     <section class="faq-section">
       <div class="faq-header">
@@ -1248,12 +1426,6 @@ textarea:focus {
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2023 HashFlow Pro | Crafted with <span class="heart"><i class="fas fa-heart"></i></span> for content creators worldwide</p>
-      <p>All processing happens locally in your browser. Your data never leaves your device.</p>
-    </footer>
   </div>
 </section>
 
@@ -1263,6 +1435,12 @@ textarea:focus {
     <div class="page-content">
       <h1><i class="fas fa-fire"></i> Trending Hashtags Today</h1>
       <p>Discover the most popular and trending hashtags across all social media platforms. Updated daily to keep you ahead of the trends.</p>
+      
+      <!-- AdSense Responsive -->
+      <div class="ad-container ad-responsive">
+        <!-- AdSense Code Here -->
+        <div class="ad-placeholder">Advertisement</div>
+      </div>
       
       <div class="platform-filters">
         <button class="platform-btn active" onclick="filterPlatform('all')">All Platforms</button>
@@ -1422,6 +1600,12 @@ textarea:focus {
       <h1><i class="fab fa-instagram"></i> Instagram Hashtags</h1>
       <p>Optimize your Instagram posts with our curated collection of high-performing hashtags. Categorized for maximum reach and engagement.</p>
       
+      <!-- AdSense Responsive -->
+      <div class="ad-container ad-responsive">
+        <!-- AdSense Code Here -->
+        <div class="ad-placeholder">Advertisement</div>
+      </div>
+      
       <h2>Instagram Hashtag Categories</h2>
       
       <div class="categories-container">
@@ -1545,6 +1729,12 @@ textarea:focus {
     <div class="page-content">
       <h1><i class="fab fa-youtube"></i> YouTube Shorts Hashtags</h1>
       <p>Boost your YouTube Shorts visibility with our specially curated hashtags. Get more views and subscribers with the right tags.</p>
+      
+      <!-- AdSense Responsive -->
+      <div class="ad-container ad-responsive">
+        <!-- AdSense Code Here -->
+        <div class="ad-placeholder">Advertisement</div>
+      </div>
       
       <h2>YouTube Shorts Hashtag Categories</h2>
       
@@ -1670,6 +1860,12 @@ textarea:focus {
       <h1><i class="fas fa-blog"></i> HashFlow Blog</h1>
       <p>Expert insights, tips, and strategies to maximize your social media impact. Stay updated with the latest trends in hashtag marketing.</p>
       
+      <!-- AdSense Responsive -->
+      <div class="ad-container ad-responsive">
+        <!-- AdSense Code Here -->
+        <div class="ad-placeholder">Advertisement</div>
+      </div>
+      
       <div class="blog-container">
         <div class="blog-card">
           <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Instagram Hashtag Strategy">
@@ -1717,212 +1913,6 @@ textarea:focus {
   </div>
 </section>
 
-<!-- About Us Page -->
-<section id="about" class="content-section">
-  <div class="container">
-    <div class="page-content">
-      <h1>About HashFlow Pro</h1>
-      
-      <h2>Our Mission</h2>
-      <p>HashFlow Pro was founded with a simple yet powerful mission: to empower content creators, marketers, and social media enthusiasts with intelligent tools that enhance their online presence. We believe that effective hashtag usage should be accessible to everyone, regardless of technical expertise or budget.</p>
-      
-      <h2>Our Story</h2>
-      <p>Our journey began in 2023 when our founder, a digital marketer, noticed a common challenge among content creators: finding the right hashtags was time-consuming and often ineffective. Many struggled to reach their target audience despite creating excellent content. We decided to solve this problem by creating smart, intuitive tools that simplify hashtag research and optimization.</p>
-      
-      <h2>What Makes Us Different</h2>
-      <ul>
-        <li><strong>Privacy-First Approach:</strong> All processing happens locally in your browser. Your data never leaves your device.</li>
-        <li><strong>100% Free:</strong> No hidden fees, no subscriptions, no account required.</li>
-        <li><strong>Dual Technology:</strong> Choose between quick keyword-based generation or advanced AI-powered analysis.</li>
-        <li><strong>Platform-Specific Optimization:</strong> Our tools understand the unique requirements of each social media platform.</li>
-      </ul>
-      
-      <h2>Our Values</h2>
-      <p>At HashFlow Pro, we're committed to:</p>
-      <ul>
-        <li><strong>Accessibility:</strong> Making powerful tools available to everyone</li>
-        <li><strong>Transparency:</strong> Being clear about how our tools work</li>
-        <li><strong>Innovation:</strong> Continuously improving our technology</li>
-        <li><strong>Community:</strong> Supporting content creators worldwide</li>
-      </ul>
-      
-      <h2>Meet Our Team</h2>
-      <p>We're a small but passionate team of developers, designers, and digital marketers who believe in the power of social media to connect people and ideas. While we may be small, our dedication to creating useful tools is enormous.</p>
-      
-      <h2>Our Commitment to You</h2>
-      <p>We're committed to maintaining HashFlow Pro as a free, accessible resource for the creator community. We believe in building tools that genuinely help people grow their online presence without compromising their privacy or budget.</p>
-      
-      <h2>Contact Us</h2>
-      <p>Have questions, suggestions, or just want to say hello? Visit our <a href="#" onclick="showPage('contact'); return false;">Contact page</a> to get in touch!</p>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Page -->
-<section id="contact" class="content-section">
-  <div class="container">
-    <div class="page-content">
-      <h1>Contact Us</h1>
-      <p>We'd love to hear from you! Whether you have questions about our tools, suggestions for improvements, or just want to say hello, please don't hesitate to reach out.</p>
-      
-      <div class="contact-info">
-        <div class="contact-card">
-          <i class="fas fa-envelope"></i>
-          <h3>Email Us</h3>
-          <p>For general inquiries and support</p>
-          <p><strong>contact@hashflowpro.com</strong></p>
-        </div>
-        
-        <div class="contact-card">
-          <i class="fas fa-comments"></i>
-          <h3>Feedback & Suggestions</h3>
-          <p>Help us improve our tools</p>
-          <p>We value your input</p>
-        </div>
-        
-        <div class="contact-card">
-          <i class="fas fa-lightbulb"></i>
-          <h3>Feature Requests</h3>
-          <p>Have an idea for a new feature?</p>
-          <p>Let us know!</p>
-        </div>
-      </div>
-      
-      <h2>Send Us a Message</h2>
-      <form class="contact-form" id="contactForm">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-      
-      <h2>Frequently Asked Questions</h2>
-      <p>Before contacting us, you might find answers to common questions on our <a href="#" onclick="showPage('home'); scrollToFAQ(); return false;">FAQ page</a>.</p>
-      
-      <h2>Response Time</h2>
-      <p>We strive to respond to all inquiries within 24-48 hours during business days. Thank you for your patience and for using HashFlow Pro!</p>
-    </div>
-  </div>
-</section>
-
-<!-- Privacy Policy Page -->
-<section id="privacy" class="content-section">
-  <div class="container">
-    <div class="page-content">
-      <h1>Privacy Policy</h1>
-      <p><strong>Last Updated: December 2023</strong></p>
-      
-      <h2>1. Introduction</h2>
-      <p>Welcome to HashFlow Pro. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.</p>
-      
-      <h2>2. Important Information</h2>
-      <p><strong>Controller:</strong> HashFlow Pro is the controller and responsible for your personal data.</p>
-      <p><strong>Contact Details:</strong> If you have any questions about this privacy policy or our privacy practices, please contact us through our <a href="#" onclick="showPage('contact'); return false;">Contact page</a>.</p>
-      
-      <h2>3. The Data We Collect About You</h2>
-      <p>We want to be transparent about what data we collect and how we use it:</p>
-      <ul>
-        <li><strong>No Personal Data Collection:</strong> We do not collect any personal identification information (name, email, address, etc.).</li>
-        <li><strong>No Content Storage:</strong> The keywords, captions, and hashtags you enter are processed locally in your browser and are never sent to our servers.</li>
-        <li><strong>Technical Data:</strong> Like most websites, we may collect anonymous technical data including browser type, device type, and general location data for analytics purposes.</li>
-      </ul>
-      
-      <h2>4. How We Use Your Data</h2>
-      <p>We use collected data only for:</p>
-      <ul>
-        <li>Providing and maintaining our service</li>
-        <li>Improving user experience</li>
-        <li>Understanding how our website is used</li>
-        <li>Technical troubleshooting</li>
-      </ul>
-      
-      <h2>5. Data Security</h2>
-      <p>We have implemented appropriate security measures to prevent your data from being accidentally lost, used, or accessed in an unauthorized way. Since all hashtag generation happens locally in your browser, your content never leaves your device.</p>
-      
-      <h2>6. Data Retention</h2>
-      <p>Since we don't store your personal data or the content you enter into our tools, there's nothing to retain. Your data stays on your device and is cleared when you close your browser.</p>
-      
-      <h2>7. Third-Party Services</h2>
-      <p>We use the following third-party services:</p>
-      <ul>
-        <li><strong>Google Fonts:</strong> For typography on our website</li>
-        <li><strong>Font Awesome:</strong> For icons on our website</li>
-        <li><strong>Google AdSense:</strong> For displaying advertisements (when approved)</li>
-      </ul>
-      <p>These services may collect anonymous usage data according to their respective privacy policies.</p>
-      
-      <h2>8. Cookies</h2>
-      <p>We may use cookies to improve your experience on our site. Cookies are small text files stored on your device. You can set your browser to refuse all or some browser cookies, but this may affect website functionality.</p>
-      
-      <h2>9. Your Legal Rights</h2>
-      <p>Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to request access, correction, erasure, restriction, transfer, or to object to processing.</p>
-      
-      <h2>10. Changes to This Policy</h2>
-      <p>We may update this privacy policy from time to time. The updated version will be indicated by an updated "Last Updated" date at the top of this page.</p>
-      
-      <h2>11. How to Contact Us</h2>
-      <p>If you have any questions about this privacy policy, please contact us through our <a href="#" onclick="showPage('contact'); return false;">Contact page</a>.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Disclaimer Page -->
-<section id="disclaimer" class="content-section">
-  <div class="container">
-    <div class="page-content">
-      <h1>Disclaimer</h1>
-      <p><strong>Last Updated: December 2023</strong></p>
-      
-      <h2>1. General Information</h2>
-      <p>The information contained on HashFlow Pro website is for general information purposes only. While we endeavor to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.</p>
-      
-      <h2>2. Professional Advice</h2>
-      <p>The content on HashFlow Pro is not professional advice. The hashtag suggestions generated by our tools are for informational purposes only and should not be considered as professional marketing, social media, or legal advice. You should consult with a qualified professional for specific advice tailored to your situation.</p>
-      
-      <h2>3. No Guarantees</h2>
-      <p>We do not guarantee that using our hashtag generators will result in increased social media engagement, followers, or any other specific outcomes. Social media algorithms and user behavior change frequently, and many factors influence content performance beyond hashtag usage.</p>
-      
-      <h2>4. External Links</h2>
-      <p>Our website may contain links to external websites that are not provided or maintained by or in any way affiliated with HashFlow Pro. Please note that we do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</p>
-      
-      <h2>5. Advertisements</h2>
-      <p>HashFlow Pro may display advertisements through Google AdSense or other advertising networks. We are not responsible for the content of these advertisements or any products or services promoted through them. Users should exercise their own judgment when interacting with advertisements.</p>
-      
-      <h2>6. Affiliate Disclosure</h2>
-      <p>HashFlow Pro may participate in various affiliate marketing programs, which means we may get paid commissions on purchases made through our links to retailer sites. However, this does not affect the price you pay for any products or services.</p>
-      
-      <h2>7. Limitation of Liability</h2>
-      <p>In no event will HashFlow Pro be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
-      
-      <h2>8. Testimonials</h2>
-      <p>Any testimonials or success stories featured on our website are individual experiences and results may vary. We do not claim that these results are typical or guaranteed for all users.</p>
-      
-      <h2>9. Changes to Disclaimer</h2>
-      <p>We reserve the right to update or change this Disclaimer at any time without prior notice. Your continued use of the website after we post any modifications constitutes acknowledgment of the modified Disclaimer.</p>
-      
-      <h2>10. Contact</h2>
-      <p>If you have any questions about this Disclaimer, please contact us through our <a href="#" onclick="showPage('contact'); return false;">Contact page</a>.</p>
-    </div>
-  </div>
-</section>
-
 <!-- Toast Notification -->
 <div class="toast" id="toast">
   <i class="fas fa-check-circle" id="toastIcon"></i>
@@ -1932,7 +1922,91 @@ textarea:focus {
   </div>
 </div>
 
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>HashFlow Pro</h3>
+        <p>Your ultimate companion for social media success. Generate powerful hashtags instantly with our free tools.</p>
+        <p>All processing happens locally in your browser. Your data never leaves your device.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Tools</h3>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home'); return false;"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" onclick="showPage('trending'); return false;"><i class="fas fa-fire"></i> Trending Hashtags</a></li>
+          <li><a href="#" onclick="showPage('instagram'); return false;"><i class="fab fa-instagram"></i> Instagram Hashtags</a></li>
+          <li><a href="#" onclick="showPage('youtube'); return false;"><i class="fab fa-youtube"></i> YouTube Shorts</a></li>
+          <li><a href="#" onclick="showPage('blog'); return false;"><i class="fas fa-blog"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Legal & Info</h3>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('about'); return false;"><i class="fas fa-info-circle"></i> About Us</a></li>
+          <li><a href="#" onclick="showPage('contact'); return false;"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li><a href="#" onclick="showPage('privacy'); return false;"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+          <li><a href="#" onclick="showPage('disclaimer'); return false;"><i class="fas fa-file-contract"></i> Disclaimer</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2023 HashFlow Pro | Crafted with <span class="heart"><i class="fas fa-heart"></i></span> for content creators worldwide</p>
+      <p>All tools are 100% free with no account required. No data collection.</p>
+    </div>
+  </div>
+</footer>
+
 <script>
+// ====================
+// THEME TOGGLE FUNCTION
+// ====================
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme or prefer-color-scheme
+const savedTheme = localStorage.getItem('theme') || 
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+// Set initial theme
+document.documentElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+// Toggle theme function
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+  
+  // Show toast notification
+  showToast('Theme Changed', `Switched to ${newTheme} mode`, 'info');
+});
+
+function updateThemeIcon(theme) {
+  if (theme === 'dark') {
+    themeIcon.className = 'fas fa-moon';
+  } else {
+    themeIcon.className = 'fas fa-sun';
+  }
+}
+
 // ====================
 // NAVIGATION FUNCTIONS
 // ====================
@@ -1982,11 +2056,6 @@ function showPage(pageId) {
   }
 }
 
-function scrollToFAQ() {
-  // This function would scroll to FAQ on home page
-  // Currently handled by navigation
-}
-
 // ====================
 // MOBILE MENU TOGGLE
 // ====================
@@ -2005,31 +2074,6 @@ document.getElementById('hamburger').addEventListener('click', function() {
     spans[1].style.opacity = '1';
     spans[2].style.transform = 'none';
   }
-});
-
-// ====================
-// CONTACT FORM HANDLING
-// ====================
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // Get form values
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
-  
-  // In a real application, you would send this data to a server
-  // For this demo, we'll just show a success message
-  showToast('Message Sent!', 'Thank you for contacting us. We\'ll get back to you soon.', 'success');
-  
-  // Clear form
-  this.reset();
-  
-  // Return to home page after 2 seconds
-  setTimeout(() => {
-    showPage('home');
-  }, 2000);
 });
 
 // ====================
@@ -2748,7 +2792,13 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('aiInput').value = '';
     }
   });
+  
+  // Initialize theme
+  updateThemeIcon(document.documentElement.getAttribute('data-theme'));
 });
 </script>
+
+<!-- AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
