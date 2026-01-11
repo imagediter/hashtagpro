@@ -2019,9 +2019,6 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
   updateThemeIcon(newTheme);
-  
-  // Show toast notification
-  showToast('Theme Changed', `Switched to ${newTheme} mode`, 'info');
 }
 
 // Add both click and touch events for mobile support
